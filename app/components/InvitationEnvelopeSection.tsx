@@ -3,6 +3,7 @@
 import { motion, useInView, Variants } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import InvitationModal from "./InvitationModal";
+import RSVPModal from "./RSVPModal";
 
 interface InvitationEnvelopeSectionProps {
     onInViewChange?: (inView: boolean) => void;
@@ -12,6 +13,7 @@ export default function InvitationEnvelopeSection({ onInViewChange }: Invitation
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { amount: 0.3 });
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isRSVPOpen, setIsRSVPOpen] = useState(false);
 
     useEffect(() => {
         if (onInViewChange) {
@@ -144,6 +146,20 @@ export default function InvitationEnvelopeSection({ onInViewChange }: Invitation
                         <span style={{ color: "#C9A962" }}>♥</span>
                         <div className="h-px w-12" style={{ backgroundColor: "#C9A962" }} />
                     </motion.div>
+
+                    <motion.button
+                        className="mt-10 px-10 py-4 rounded-full text-white font-medium text-lg"
+                        style={{ backgroundColor: "#B76E79" }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 1.4 }}
+                        whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(183, 110, 121, 0.4)" }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsRSVPOpen(true)}
+                    >
+                        RSVP Now
+                    </motion.button>
                 </motion.div>
             </section>
 
@@ -155,6 +171,8 @@ export default function InvitationEnvelopeSection({ onInViewChange }: Invitation
                 venue="[Venue Name]"
                 message="We can't wait to celebrate love with you."
             />
+
+            <RSVPModal isOpen={isRSVPOpen} onClose={() => setIsRSVPOpen(false)} />
         </>
     );
 }

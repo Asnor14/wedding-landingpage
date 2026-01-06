@@ -6,6 +6,7 @@ import StorySection from "./components/StorySection";
 import PhotoCarousel from "./components/PhotoCarousel";
 import InvitationEnvelopeSection from "./components/InvitationEnvelopeSection";
 import ButterflyScroll from "./components/ButterflyScroll";
+import MusicPlayer from "./components/MusicPlayer";
 
 export default function Home() {
   const [envelopeInView, setEnvelopeInView] = useState(false);
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <main className="relative">
+      <MusicPlayer />
       <ButterflyScroll envelopeInView={envelopeInView} />
 
       <HeroSection
