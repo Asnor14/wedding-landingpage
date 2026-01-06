@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
+/* ============================================
+   WEDDING THEME - Romantic Color Palette
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --ivory: #FFFEF7;
+  --soft-beige: #F5F0E8;
+  --warm-white: #FAF8F5;
+  
+  /* Text Colors */
+  --charcoal: #3D3D3D;
+  --dark-brown: #4A3728;
+  --soft-gray: #6B6B6B;
+  
+  /* Accent Colors */
+  --muted-gold: #C9A962;
+  --rose-gold: #B76E79;
+  --blush-pink: #E8D5D3;
+  
+  /* Background */
+  --background: var(--ivory);
+  --foreground: var(--charcoal);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ivory: var(--ivory);
+  --color-soft-beige: var(--soft-beige);
+  --color-warm-white: var(--warm-white);
+  --color-charcoal: var(--charcoal);
+  --color-dark-brown: var(--dark-brown);
+  --color-soft-gray: var(--soft-gray);
+  --color-muted-gold: var(--muted-gold);
+  --color-rose-gold: var(--rose-gold);
+  --color-blush-pink: var(--blush-pink);
+  --font-sans: var(--font-playfair);
+  --font-serif: var(--font-lora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lora', Georgia, serif;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   CUSTOM ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-5px) translateX(3px);
+  }
+  50% {
+    transform: translateY(0px) translateX(-3px);
+  }
+  75% {
+    transform: translateY(5px) translateX(2px);
+  }
+}
+
+@keyframes wing-flutter {
+  0%, 100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.85);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-wing-left {
+  animation: wing-flutter 0.15s ease-in-out infinite;
+  transform-origin: right center;
+}
+
+.animate-wing-right {
+  animation: wing-flutter 0.15s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+/* ============================================
+   OVERLAY STYLES
+   ============================================ */
+
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.heading-elegant {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.05em;
 }
