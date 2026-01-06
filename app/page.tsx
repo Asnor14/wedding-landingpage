@@ -22,7 +22,7 @@ export default function Home() {
 
       <HeroSection
         coupleName="Lucas & Amelia"
-        weddingDate="June 14, 2026"
+        weddingDate="June 14, 202X"
         invitationText="Together with their families, joyfully invite you to celebrate their wedding"
       />
 

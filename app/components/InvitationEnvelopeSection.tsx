@@ -121,7 +121,7 @@ export default function InvitationEnvelopeSection({ onInViewChange }: Invitation
                         viewport={{ once: true }}
                         transition={{ delay: 0.8 }}
                     >
-                        June 14, 2026
+                        June 14, 202X
                     </motion.p>
 
                     <motion.p
@@ -167,7 +167,7 @@ export default function InvitationEnvelopeSection({ onInViewChange }: Invitation
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 coupleName="Lucas & Amelia"
-                weddingDate="June 14, 2026"
+                weddingDate="June 14, 202X"
                 venue="[Venue Name]"
                 message="We can't wait to celebrate love with you."
             />

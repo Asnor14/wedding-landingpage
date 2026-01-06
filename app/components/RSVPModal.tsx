@@ -170,7 +170,7 @@ export default function RSVPModal({ isOpen, onClose }: RSVPModalProps) {
                                                         RSVP
                                                     </h2>
                                                     <p className="text-sm" style={{ fontFamily: "'Lora', serif", color: "#6B6B6B" }}>
-                                                        Kindly respond by May 14, 2026
+                                                        Kindly respond by June 14, 202X
                                                     </p>
                                                 </div>
 

@@ -27,7 +27,7 @@ export default function MusicPlayer() {
 
     return (
         <>
-            <audio ref={audioRef} loop preload="auto">
+            <audio ref={audioRef} loop preload="none">
                 <source src="/music/wedding-music.mp3" type="audio/mpeg" />
             </audio>
 

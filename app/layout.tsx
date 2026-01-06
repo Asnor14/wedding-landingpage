@@ -16,7 +16,7 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   title: "Lucas & Amelia | Wedding Invitation",
-  description: "Together with their families, Lucas & Amelia joyfully invite you to celebrate their wedding on June 14, 2026.",
+  description: "Together with their families, Lucas & Amelia joyfully invite you to celebrate their wedding on June 14, 202X.",
   keywords: ["wedding", "invitation", "Lucas", "Amelia", "celebration"],
   openGraph: {
     title: "Lucas & Amelia | Wedding Invitation",

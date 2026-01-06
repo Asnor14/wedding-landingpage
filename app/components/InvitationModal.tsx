@@ -16,7 +16,7 @@ export default function InvitationModal({
     isOpen,
     onClose,
     coupleName = "Lucas & Amelia",
-    weddingDate = "June 14, 2026",
+    weddingDate = "June 14, 202X",
     venue = "[Venue Name]",
     message = "We can't wait to celebrate love with you.",
 }: InvitationModalProps) {
@@ -88,22 +88,22 @@ export default function InvitationModal({
                         aria-modal="true"
                         aria-labelledby="invitation-title"
                     >
-                        <button
-                            onClick={onClose}
-                            className="absolute -top-12 right-0 text-white/80 hover:text-white transition-colors p-2"
-                            aria-label="Close invitation"
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <line x1="18" y1="6" x2="6" y2="18" />
-                                <line x1="6" y1="6" x2="18" y2="18" />
-                            </svg>
-                        </button>
-
                         <motion.div
                             className="relative overflow-hidden rounded-lg shadow-2xl"
                             variants={letterVariants}
                             style={{ background: "linear-gradient(145deg, #FFFEF7 0%, #F5F0E8 100%)" }}
                         >
+                            <button
+                                onClick={onClose}
+                                className="absolute top-4 right-4 z-20 text-[#4A3728]/60 hover:text-[#4A3728] transition-colors p-1"
+                                aria-label="Close invitation"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                            </button>
+
                             <div className="absolute inset-3 border-2 rounded pointer-events-none" style={{ borderColor: "#C9A96233" }} />
 
                             <div className="p-10 md:p-14 text-center">
