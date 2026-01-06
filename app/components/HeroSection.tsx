@@ -7,47 +7,49 @@ interface HeroSectionProps {
     coupleName?: string;
     weddingDate?: string;
     invitationText?: string;
-    videos?: string[];
 }
 
 export default function HeroSection({
     coupleName = "Lucas & Amelia",
     weddingDate = "June 14, 2026",
     invitationText = "Together with their families, joyfully invite you to celebrate their wedding",
-    videos = ["/videos/hero-wedding.mp4", "/videos/hero-wedding2.mp4"],
 }: HeroSectionProps) {
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [nextVideoIndex, setNextVideoIndex] = useState(1);
+    const [currentVideo, setCurrentVideo] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const currentVideoRef = useRef<HTMLVideoElement>(null);
-    const nextVideoRef = useRef<HTMLVideoElement>(null);
+    const video1Ref = useRef<HTMLVideoElement>(null);
+    const video2Ref = useRef<HTMLVideoElement>(null);
 
-    const handleVideoEnded = () => {
+    const videos = ["/videos/hero-wedding.mp4", "/videos/hero-wedding2.mp4"];
+
+    const handleVideo1Ended = () => {
         if (isTransitioning) return;
-
         setIsTransitioning(true);
-
-        if (nextVideoRef.current) {
-            nextVideoRef.current.currentTime = 0;
-            nextVideoRef.current.play().catch(() => { });
+        if (video2Ref.current) {
+            video2Ref.current.currentTime = 0;
+            video2Ref.current.play().catch(() => { });
         }
-
         setTimeout(() => {
-            setCurrentVideoIndex(nextVideoIndex);
-            setNextVideoIndex((nextVideoIndex + 1) % videos.length);
+            setCurrentVideo(1);
+            setIsTransitioning(false);
+        }, 1000);
+    };
+
+    const handleVideo2Ended = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        if (video1Ref.current) {
+            video1Ref.current.currentTime = 0;
+            video1Ref.current.play().catch(() => { });
+        }
+        setTimeout(() => {
+            setCurrentVideo(0);
             setIsTransitioning(false);
         }, 1000);
     };
 
     useEffect(() => {
-        if (nextVideoRef.current) {
-            nextVideoRef.current.load();
-        }
-    }, [nextVideoIndex]);
-
-    useEffect(() => {
-        if (currentVideoRef.current) {
-            currentVideoRef.current.play().catch(() => { });
+        if (video1Ref.current) {
+            video1Ref.current.play().catch(() => { });
         }
     }, []);
 
@@ -78,31 +80,30 @@ export default function HeroSection({
         <section className="relative h-screen w-full overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <motion.video
-                    ref={currentVideoRef}
-                    key={`current-${currentVideoIndex}`}
+                    ref={video1Ref}
                     autoPlay
                     muted
                     playsInline
-                    onEnded={handleVideoEnded}
+                    onEnded={handleVideo1Ended}
                     className="absolute inset-0 h-full w-full object-cover"
                     initial={{ opacity: 1 }}
-                    animate={{ opacity: isTransitioning ? 0 : 1 }}
+                    animate={{ opacity: currentVideo === 0 && !isTransitioning ? 1 : currentVideo === 1 && isTransitioning ? 1 : 0 }}
                     transition={{ duration: 1, ease: "easeInOut" }}
                 >
-                    <source src={videos[currentVideoIndex]} type="video/mp4" />
+                    <source src="/videos/hero-wedding.mp4" type="video/mp4" />
                 </motion.video>
 
                 <motion.video
-                    ref={nextVideoRef}
-                    key={`next-${nextVideoIndex}`}
+                    ref={video2Ref}
                     muted
                     playsInline
+                    onEnded={handleVideo2Ended}
                     className="absolute inset-0 h-full w-full object-cover"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: isTransitioning ? 1 : 0 }}
+                    animate={{ opacity: currentVideo === 1 && !isTransitioning ? 1 : currentVideo === 0 && isTransitioning ? 1 : 0 }}
                     transition={{ duration: 1, ease: "easeInOut" }}
                 >
-                    <source src={videos[nextVideoIndex]} type="video/mp4" />
+                    <source src="/videos/hero-wedding2.mp4" type="video/mp4" />
                 </motion.video>
 
                 <div
