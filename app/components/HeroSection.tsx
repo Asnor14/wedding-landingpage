@@ -84,6 +84,7 @@ export default function HeroSection({
                     autoPlay
                     muted
                     playsInline
+                    preload="auto"
                     onEnded={handleVideo1Ended}
                     className="absolute inset-0 h-full w-full object-cover"
                     initial={{ opacity: 1 }}
@@ -97,6 +98,7 @@ export default function HeroSection({
                     ref={video2Ref}
                     muted
                     playsInline
+                    preload="auto"
                     onEnded={handleVideo2Ended}
                     className="absolute inset-0 h-full w-full object-cover"
                     initial={{ opacity: 0 }}
