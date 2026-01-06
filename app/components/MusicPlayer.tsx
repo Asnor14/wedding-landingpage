@@ -46,6 +46,34 @@ export default function MusicPlayer() {
                     )}
                 </AnimatePresence>
 
+                <AnimatePresence>
+                    {isPlaying && (
+                        <motion.div
+                            className="flex items-center gap-1 h-8"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
+                        >
+                            {[0, 1, 2, 3].map((i) => (
+                                <motion.div
+                                    key={i}
+                                    className="w-1 rounded-full"
+                                    style={{ backgroundColor: "#C9A962" }}
+                                    animate={{
+                                        height: [8, 24, 12, 20, 8],
+                                    }}
+                                    transition={{
+                                        duration: 0.8,
+                                        repeat: Infinity,
+                                        delay: i * 0.15,
+                                        ease: "easeInOut",
+                                    }}
+                                />
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
                 <motion.button
                     onClick={togglePlay}
                     className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-colors"
@@ -68,34 +96,6 @@ export default function MusicPlayer() {
                     )}
                 </motion.button>
             </div>
-
-            <AnimatePresence>
-                {isPlaying && (
-                    <motion.div
-                        className="fixed bottom-6 right-24 z-40 flex gap-1"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        {[0, 1, 2, 3].map((i) => (
-                            <motion.div
-                                key={i}
-                                className="w-1 rounded-full"
-                                style={{ backgroundColor: "#C9A962" }}
-                                animate={{
-                                    height: [8, 20, 8],
-                                }}
-                                transition={{
-                                    duration: 0.5,
-                                    repeat: Infinity,
-                                    delay: i * 0.1,
-                                    ease: "easeInOut",
-                                }}
-                            />
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </>
     );
 }
